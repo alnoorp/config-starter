@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Configuration Form</title>
+</head>
+<body>
+    <h1>Space Configuration Form</h1>
+    <form id="configForm">
+        <h2>Theme</h2>
+        <fieldset>
+            <legend>Root</legend>
+            <label for="primaryColor">Primary Color:</label>
+            <input type="text" id="primaryColor" name="primaryColor" value="#ff7a59"><br><br>
+
+            <label for="dangerColor">Danger Color:</label>
+            <input type="text" id="dangerColor" name="dangerColor" value="#F00028"><br><br>
+
+            <label for="warningColor">Warning Color:</label>
+            <input type="text" id="warningColor" name="warningColor" value="#FF9800"><br><br>
+
+            <label for="actionColor">Action Color:</label>
+            <input type="text" id="actionColor" name="actionColor" value="#ff7a59"><br><br>
+
+            <label for="buttonBorderRadius">Button Border Radius:</label>
+            <input type="text" id="buttonBorderRadius" name="buttonBorderRadius" value="30px"><br><br>
+
+            <label for="borderColor">Border Color:</label>
+            <input type="text" id="borderColor" name="borderColor" value="#ff7a59"><br><br>
+        </fieldset>
+        
+        <!-- Add similar fieldsets for sidebar, table, etc. -->
+
+        <input type="submit" value="Generate Configuration">
+    </form>
+
+    <pre id="configOutput"></pre>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const primaryColor = document.getElementById('primaryColor').value;
+            const dangerColor = document.getElementById('dangerColor').value;
+            const warningColor = document.getElementById('warningColor').value;
+            const actionColor = document.getElementById('actionColor').value;
+            const buttonBorderRadius = document.getElementById('buttonBorderRadius').value;
+            const borderColor = document.getElementById('borderColor').value;
+
+            // Create the config object
+            const config = `
+export const spaceMetadata = {
+    theme: {
+        root: {
+            primaryColor: "${primaryColor}",
+            dangerColor: "${dangerColor}",
+            warningColor: "${warningColor}",
+            actionColor: "${actionColor}",
+            buttonBorderRadius: "${buttonBorderRadius}",
+            borderColor: "${borderColor}"
+        },
+        // Continue for other sections...
+    }
+};
+`;
+
+            document.getElementById('configOutput').textContent = config;
+        });
+    </script>
+</body>
+</html>
